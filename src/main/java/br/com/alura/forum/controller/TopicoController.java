@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.alura.forum.controller.dto.DetalhesTopicoDto;
+import br.com.alura.forum.controller.dto.TopicoDto;
 import br.com.alura.forum.controller.form.TopicoForm;
 import br.com.alura.forum.model.Topico;
 import br.com.alura.forum.repository.CursoRepository;
@@ -57,12 +59,16 @@ public class TopicoController {
 	}
 	
 	@GetMapping("/{id}")
-	public TopicoDto detalhar(@PathVariable Long id) {
+	public DetalhesTopicoDto detalhar(@PathVariable Long id) {
 		Topico topico = topicoRepository.getOne(id);
-		return new TopicoDto(topico);
+		return new DetalhesTopicoDto(topico);
 		
 		
 		
 	}
-
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<TopicoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoTopicoForm form, UriComponentsBuilder uriBuilder){
+		
+	}
 }
